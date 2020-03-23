@@ -9,7 +9,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 
   if (user)
     return res
-      .status(400)
+      .status(200)
       .json({ success: false, message: 'Email already exists.' });
 
   const salt = await bcrypt.genSalt(10);
@@ -42,16 +42,16 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
 
   if (!user)
     return res
-      .status(400)
-      .json({ success: false, message: 'Email is incorrect.' });
+      .status(200)
+      .json({ success: false, message: 'Email or password is incorrect.' });
 
   //Check for valid password
   const validPass = await bcrypt.compare(req.body.password, user.password);
 
   if (!validPass)
     return res
-      .status(400)
-      .json({ success: false, message: 'Password is incorrect.' });
+      .status(200)
+      .json({ success: false, message: 'Email or password is incorrect.' });
 
   res.status(200).json({
     success: true,
