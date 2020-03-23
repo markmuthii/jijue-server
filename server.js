@@ -5,7 +5,7 @@ const connectDB = require('./config/db');
 const Message = require('./models/Message');
 
 dotenv.config({
-  path: './config/config.env'
+  path: './.env'
 });
 
 connectDB();

@@ -17,9 +17,11 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 
   req.body.password = hashedPass;
 
-  user = await User.create(req.body);
+  const role = await Role.findOne({ name: req.body.role });
 
-  const role = await Role.findOne({ _id: user.role });
+  req.body.role = role._id;
+
+  user = await User.create(req.body);
 
   res.status(201).json({
     success: true,

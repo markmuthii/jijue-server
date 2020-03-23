@@ -18,11 +18,11 @@ exports.getKitById = asyncHandler(async (req, res, next) => {});
 exports.getKitsByUserId = asyncHandler(async (req, res, next) => {
   const kit = await Kit.find({ user_id: req.params.userId });
 
-  if (!kit)
-    return res.status(400).json({
-      success: false,
-      message: 'Error processing your request.'
-    });
+  // if (!kit)
+  //   return res.status(400).json({
+  //     success: false,
+  //     message: 'Error processing your request.'
+  //   });
 
   res.status(200).json({
     success: true,
